@@ -1,0 +1,21 @@
+function kMostFrequentWords(words, k):
+  # Create a frequency map to store word frequencies
+  frequencyMap = new HashMap()
+
+  # Count the occurrences of each word
+  for word in words:
+    frequencyMap[word] = frequencyMap.getOrDefault(word, 0) + 1
+
+  # Create a min-heap to store words and their frequencies
+  minHeap = new PriorityQueue((word1, word2) -> frequencyMap[word1] - frequencyMap[word2])
+
+  # Add all words to the min-heap
+  for word in frequencyMap.keySet():
+    minHeap.add(word)
+
+  # Extract the k most frequent words
+  result = []
+  for i in range(k):
+    result.add(minHeap.poll())
+
+  return result
